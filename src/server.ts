@@ -4,6 +4,8 @@ import express from "express";
 import { resolve } from "path";
 import { config } from "dotenv";
 
+import { Cache } from "./config/cache.js";
+
 import corsConfig from "./config/cors.js";
 import { ratelimit } from "./config/ratelimit.js";
 import errorHandler from "./config/errorHandler.js";
@@ -14,6 +16,10 @@ import animeRouter from "./routes/index.js";
 config();
 const app: express.Application = express();
 const PORT: number = Number(process.env.PORT) || 4000;
+
+const CacheLayer = new Cache();
+declare global { var cache: Cache; }
+global.cache = CacheLayer;
 
 app.use(morgan("dev"));
 app.use(corsConfig);

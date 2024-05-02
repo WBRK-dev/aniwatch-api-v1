@@ -8,6 +8,11 @@ export const USER_AGENT_HEADER =
 export const ACCEPT_HEADER =
   "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
 
+// Cache related constants
+export const CACHE_ENABLED = Boolean(process.env.CACHE) || true;
+export const CACHE_DRIVER = process.env.CACHE_DRIVER || "memory";
+export const CACHE_LIFETIME = Number(process.env.CACHE_LIFETIME) || 1800000;
+
 // previously aniwatch.to || aniwatchtv.to
 const DOMAIN = process.env.DOMAIN || "hianime.to";
 

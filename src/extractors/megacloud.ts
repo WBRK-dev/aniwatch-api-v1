@@ -90,21 +90,31 @@ class MegaCloud {
         return extractedData;
       }
 
-      let text: string;
-      const { data } = await axios.get(
-        megacloud.script.concat(Date.now().toString())
-      );
-
-      text = data;
-      if (!text) {
-        throw createHttpError.InternalServerError(
-          "Couldn't fetch script to decrypt resource"
+      let vars: number[][];
+      if (global.cache.enabled && global.cache.check("megacloud_key")) {
+        vars = global.cache.get("megacloud_key")?.body;
+        console.log(`CACHE: ${ JSON.stringify(vars) }`);
+      } else {
+        let text: string;
+        const { data } = await axios.get(
+          megacloud.script.concat(Date.now().toString())
         );
-      }
-
-      const vars = this.extractVariables(text);
-      if (!vars.length) {
-        throw new Error("Can't find variables. Perhaps the extractor is outdated.");
+  
+        text = data;
+        if (!text) {
+          throw createHttpError.InternalServerError(
+            "Couldn't fetch script to decrypt resource"
+          );
+        }
+  
+        vars = this.extractVariables(text);
+        if (!vars.length) {
+          throw new Error("Can't find variables. Perhaps the extractor is outdated.");
+        }
+        if (global.cache.enabled) {
+          global.cache.set("megacloud_key", vars);
+          console.log(`RECACHED: ${ JSON.stringify(vars) }`);
+        }
       }
 
       const { secret, encryptedSource } = this.getSecret(
