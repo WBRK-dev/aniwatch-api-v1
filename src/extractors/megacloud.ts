@@ -1,8 +1,7 @@
 import axios from "axios";
 import crypto from "crypto";
 import createHttpError from "http-errors";
-// @ts-ignore
-import { getSources } from "./lib/rabbit.ts";
+import { getSources } from "./lib/rabbit.js";
 
 // https://megacloud.tv/embed-2/e-1/dBqCr5BcOhnD?k=1
 

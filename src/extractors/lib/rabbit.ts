@@ -1,7 +1,7 @@
 // solution inspired from https://github.com/drblgn/rabbit_wasm/blob/main/rabbit.ts
 
 // @ts-ignore
-import { decoded_png } from "./decodedpng.ts";
+import { decoded_png } from "./decodedpng.js";
 import util from "util";
 import CryptoJS from "crypto-js";
 import { webcrypto } from "crypto";
