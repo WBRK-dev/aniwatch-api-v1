@@ -1,5 +1,6 @@
 // solution inspired from https://github.com/drblgn/rabbit_wasm/blob/main/rabbit.ts
 
+// @ts-ignore
 import { decoded_png } from "./decodedpng.ts";
 import util from "util";
 import CryptoJS from "crypto-js";
@@ -11,6 +12,7 @@ const embed_url = "https://megacloud.tv/embed-2/e-1/";
 const referrer = SRC_BASE_URL;
 const user_agent = USER_AGENT_HEADER;
 
+// @ts-ignore
 const crypto = webcrypto as unknown as Crypto;
 let wasm: any;
 let arr = new Array(128).fill(void 0);
@@ -263,14 +265,18 @@ function isResponse(obj: Object) {
   return Object.prototype.toString.call(obj) === "[object Response]";
 }
 
+// @ts-ignore
 async function QN(QP: Response, Qn: WebAssembly.Imports) {
   let QT: ArrayBuffer, Qt: any;
 
   return "function" == typeof Response && isResponse(QP)
     ? ((QT = await QP.arrayBuffer()),
+// @ts-ignore
       (Qt = await WebAssembly.instantiate(QT, Qn)),
       Object.assign(Qt, { bytes: QT }))
+// @ts-ignore
     : (Qt = await WebAssembly.instantiate(QP, Qn)) instanceof
+// @ts-ignore
       WebAssembly.Instance
     ? {
         instance: Qt,
@@ -691,7 +697,9 @@ function QZ(QP: any) {
   return void 0 !== wasm
     ? wasm
     : ((Qn = initWasm()),
+// @ts-ignore
       QP instanceof WebAssembly.Module || (QP = new WebAssembly.Module(QP)),
+// @ts-ignore
       assignWasm(new WebAssembly.Instance(QP, Qn)));
 }
 
@@ -815,6 +823,7 @@ export async function getSources(xrax: string) {
   fake_window.location.href = embed_url + xrax + "?k=1";
 
   let browser_version = 1878522368;
+// @ts-ignore
   let res = {} as extractedSrc;
 
   try {
@@ -849,14 +858,16 @@ export async function getSources(xrax: string) {
     let Q5 = fake_window.navigate();
     Q5 = new Uint8Array(Q5);
     let Q8: any;
-    Q8 =
-      resp_json.t != 0 ? (i(Q5, Q1), Q5) : ((Q8 = resp_json.k), i(Q8, Q1), Q8);
+// @ts-ignore
+    Q8 = resp_json.t != 0 ? (i(Q5, Q1), Q5) : ((Q8 = resp_json.k), i(Q8, Q1), Q8);
 
+// @ts-ignore
     res = resp_json as extractedSrc;
     // @ts-ignore
     const str = btoa(String.fromCharCode.apply(null, new Uint8Array(Q8)));
 
     // decoding encrypted .m3u8 file url
+// @ts-ignore
     res.sources = M(res.sources, str) as unencryptedSrc[];
 
     return res;

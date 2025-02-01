@@ -1,6 +1,7 @@
 import axios from "axios";
 import crypto from "crypto";
 import createHttpError from "http-errors";
+// @ts-ignore
 import { getSources } from "./lib/rabbit.ts";
 
 // https://megacloud.tv/embed-2/e-1/dBqCr5BcOhnD?k=1
@@ -61,6 +62,7 @@ class MegaCloud {
 
       const videoId = videoUrl?.href?.split("/")?.pop()?.split("?")[0];
       
+      // @ts-ignore
       return await getSources(videoId);
     } catch (err) {
       // console.log(err);
