@@ -28,5 +28,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/WBRK-dev/aniwatch:${{ github.event.release.tag_name }}
-            ghcr.io/WBRK-dev/aniwatch:latest
+            ghcr.io/wbrk-dev/aniwatch:${{ github.event.release.tag_name }}
+            ghcr.io/wbrk-dev/aniwatch:latest
