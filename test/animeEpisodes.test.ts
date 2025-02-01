@@ -1,12 +1,8 @@
-import { HiAnime } from "aniwatch";
 import { expect, test } from "vitest";
+import { scrapeAnimeEpisodes } from "../src/parsers/index.js";
 
-const animeId = "steinsgate-3";
-
-// npx vitest run animeEpisodes.test.ts
-test(`GET /api/v2/hianime/anime/${animeId}/episodes`, async () => {
-  const hianime = new HiAnime.Scraper();
-  const data = await hianime.getEpisodes(animeId);
+test("returns episodes info of an anime", async () => {
+  const data = await scrapeAnimeEpisodes("steinsgate-3");
 
   expect(data.totalEpisodes).not.toEqual(0);
   expect(data.episodes).not.toEqual([]);

@@ -1,17 +1,24 @@
+import cors from "cors";
 import { config } from "dotenv";
-import { cors } from "hono/cors";
 
 config();
 
-const allowedOrigins = process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS
-  ? process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS.split(",")
+const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
+  ? process.env.CORS_ALLOWED_ORIGINS.split(",")
   : ["http://localhost:4000", "*"];
 
 const corsConfig = cors({
-  allowMethods: ["GET"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET"],
   maxAge: 600,
   credentials: true,
-  origin: allowedOrigins,
+  optionsSuccessStatus: 200,
 });
 
 export default corsConfig;

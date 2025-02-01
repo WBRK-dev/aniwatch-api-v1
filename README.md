@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://github.com/ghoshRitesh12/aniwatch-api">
     <img 
-      src="https://raw.githubusercontent.com/ghoshRitesh12/aniwatch-api/refs/heads/main/public/img/hianime_v2.png" 
-      alt="aniwatch_logo" 
-      width="175" 
-      height="175"
+      src="https://github.com/ghoshRitesh12/aniwatch-api/blob/main/public/img/img1.gif?raw=true" 
+      alt="Logo" 
+      width="120" 
+      height="120"
       decoding="async"
       fetchpriority="high"
     />
@@ -14,11 +14,9 @@
 # <p align="center">Aniwatch API</p>
 
 <div align="center">
-  A free RESTful API serving anime information from <a href="https://hianime.to" target="_blank">hianime.to</a>
-
-  <br/>
-
-  <div>
+  A free restful API serving anime information from <a href="https://hianime.to" target="_blank">hianime.to</a>
+  <br/><br/>
+  <strong>
     <a 
       href="https://github.com/ghoshRitesh12/aniwatch-api/issues/new?assignees=ghoshRitesh12&labels=bug&template=bug-report.yml"
     > 
@@ -30,7 +28,7 @@
     >
       Feature request
     </a>
-  </div>
+  </strong>
 </div>
 
 <br/>
@@ -55,31 +53,26 @@
 
 > [!IMPORTANT]
 >
-> 1. [https://api-aniwatch.onrender.com](https://api-aniwatch.onrender.com/) is only meant to demo the API and has rate-limiting enabled to minimize bandwidth consumption. It is recommended to deploy your own instance for personal use by customizing the API as you need it to be.
-> 2. This API is just an unofficial API for [hianime.to](https://hianime.to) and is in no other way officially related to the same.
-> 3. The content that this API provides is not mine, nor is it hosted by me. These belong to their respective owners. This API just demonstrates how to build an API that scrapes websites and uses their content.
+> 1. [https://api-aniwatch.onrender.com](https://api-aniwatch.onrender.com/) is only meant to demo the API and has rate-limiting enabled to minimise bandwidth consumption. It is recommended to deploy your own instance for personal use by customizing the api as you need it to be.
+> 2. This API is just an unofficial api for [hianime.to](https://hianime.to) and is in no other way officially related to the same.
+> 3. The content that this api provides is not mine, nor is it hosted by me. These belong to their respective owners. This api just demonstrates how to build an api that scrapes websites and uses their content.
 
 ## Table of Contents
 
 - [Installation](#installation)
   - [Local](#local)
   - [Docker](#docker)
-- [Configuration](#️configuration)
-  - [Custom HTTP Headers](#custom-http-headers)
-  - [Environment Variables](#environment-variables)
-- [Host your instance](#host-your-instance)
+- [Host your instance](#-host-your-instance)
   - [Vercel](#vercel)
   - [Render](#render)
 - [Documentation](#documentation)
   - [GET Anime Home Page](#get-anime-home-page)
-  - [GET Anime A-Z List](#get-anime-a-z-list)
-  - [GET Anime Qtip Info](#get-anime-qtip-info)
   - [GET Anime About Info](#get-anime-about-info)
   - [GET Search Results](#get-search-results)
   - [GET Search Suggestions](#get-search-suggestions)
   - [GET Producer Animes](#get-producer-animes)
   - [GET Genre Animes](#get-genre-animes)
-  - [GET Category Animes](#get-category-animes)
+  - [GET Category Anime](#get-category-anime)
   - [GET Estimated Schedules](#get-estimated-schedules)
   - [GET Anime Episodes](#get-anime-episodes)
   - [GET Anime Episode Servers](#get-anime-episode-servers)
@@ -118,49 +111,24 @@
 
 ### Docker
 
-The Docker image is available at [The GitHub Container Registry](https://github.com/ghoshRitesh12/aniwatch-api/pkgs/container/aniwatch).
+Docker image is available at [GitHub Container Registry](https://github.com/ghoshRitesh12/aniwatch-api/pkgs/container/aniwatch).
 
 Run the following commands to pull and run the docker image.
 
 ```bash
-docker run -d --name aniwatch-api -p 4000:4000 ghcr.io/ghoshritesh12/aniwatch
+docker pull ghcr.io/ghoshritesh12/aniwatch
+docker run -p 4000:4000 ghcr.io/ghoshritesh12/aniwatch
 ```
 
-The above command will start the server on port 4000. You can access the server at [http://localhost:4000](http://localhost:4000), and you can also change the port by changing the `-p` option to `-p <port>:4000`.
+The above command will start the server on port 4000. You can access the server at [http://localhost:4000](http://localhost:4000) and you can also change the port by changing the `-p` option to `-p <port>:4000`.
 
-The `-d` flag runs the container in detached mode, and the `--name` flag is used to name the container that's about to run.
-
-## <span id="configuration">⚙️ Configuration</span>
-
-### Custom HTTP Headers
-
-Currently this API supports parsing of only one custom header, and more may be implemented in the future to accommodate varying needs.
-
-- `X-ANIWATCH-CACHE-EXPIRY`: this custom header is used to specify the cache expiration duration in **seconds** (defaults to 60 if the header is missing). The `ANIWATCH_API_REDIS_CONN_URL` env is required for this custom header to function as intended; otherwise, there's no point in setting this custom header.
-
-### Environment Variables
-
-More info can be found in the [`.env.example`](https://github.com/ghoshRitesh12/aniwatch-api/blob/main/.env.example) file, where envs' having a value that is contained within `<` `>` angled brackets, commented out or not, are just examples and should be replaced with relevant ones.
-
-- `ANIWATCH_API_PORT`: port number of the aniwatch API.
-- `ANIWATCH_API_WINDOW_MS`: duration to track requests for rate limiting (in milliseconds).
-- `ANIWATCH_API_MAX_REQS`: maximum number of requests in the `ANIWATCH_API_WINDOW_MS` time period.
-- `ANIWATCH_API_CORS_ALLOWED_ORIGINS`: allowed origins, separated by commas and no spaces in between.
-- `ANIWATCH_API_VERCEL_DEPLOYMENT`: required for distinguishing Vercel deployment from other ones; set it to true or any other non-zero value.
-- `ANIWATCH_API_HOSTNAME`: set this to your api instance's hostname to enable rate limiting, don't have this value if you don't wish to rate limit.
-- `ANIWATCH_API_REDIS_CONN_URL`: this env is optional by default and can be set to utilize Redis caching functionality. It has to be a valid connection URL; otherwise, the Redis client can throw unexpected errors.
-- `ANIWATCH_API_S_MAXAGE`: specifies the maximum amount of time (in seconds) a resource is considered fresh when served by a CDN cache.
-- `ANIWATCH_API_STALE_WHILE_REVALIDATE`: specifies the amount of time (in seconds) a resource is served stale while a new one is fetched.
+You can also add the `-d` flag to run the container in detached mode.
 
 ## <span id="host-your-instance">⛅ Host your instance</span>
 
 > [!CAUTION]
 >
-> For personal deployments:
->
-> - If you want to have rate limiting in your application, then set the `ANIWATCH_API_HOSTNAME` env to your deployed instance's hostname; otherwise, don't set or have this env at all. If you set this env to an incorrect value, you may face other issues.
-> - It's optional by default, but if you want to have endpoint response caching functionality, then set the `ANIWATCH_API_REDIS_CONN_URL` env to a valid Redis connection URL. If the connection URL is invalid, the Redis client can throw unexpected errors.
-> - Remove the if block from the [`server.ts`](https://github.com/ghoshRitesh12/aniwatch-api/blob/main/src/server.ts) file, spanning from lines [61](https://github.com/ghoshRitesh12/aniwatch-api/blob/main/src/server.ts#L61) to [85](https://github.com/ghoshRitesh12/aniwatch-api/blob/main/src/server.ts#L85).
+> For personal deployments, **refrain from having an env** named `ANIWATCH_API_HOSTNAME`. You may face rate limitting and other issues if you do.
 
 ### Vercel
 
@@ -170,7 +138,7 @@ Deploy your own instance of Aniwatch API on Vercel.
 
 > [!NOTE]
 >
-> When deploying to vercel, set an env named `ANIWATCH_API_VERCEL_DEPLOYMENT` to `true` or any non-zero value, but this env must be present.
+> When deploying to vercel, set an env named `IS_VERCEL_DEPLOYMENT` to `true` or anything, but this env should be present.
 
 ### Render
 
@@ -193,13 +161,13 @@ The endpoints exposed by the api are listed below with examples that uses the [F
 #### Endpoint
 
 ```bash
-/api/v2/hianime/home
+https://api-aniwatch.onrender.com/anime/home
 ```
 
-#### Request Sample
+#### Request sample
 
 ```javascript
-const resp = await fetch("/api/v2/hianime/home");
+const resp = await fetch("https://api-aniwatch.onrender.com/anime/home");
 const data = await resp.json();
 console.log(data);
 ```
@@ -208,257 +176,127 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    genres: ["Action", "Cars", "Adventure", ...],
-    latestEpisodeAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        type: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-    spotlightAnimes: [
-      {
-        id: string,
-        name: string,
-        jname: string,
-        poster: string,
-        description: string,
-        rank: number,
-        otherInfo: string[],
-        episodes: {
-          sub: number,
-          dub: number,
-        },
-      },
-      {...},
-    ],
-    top10Animes: {
-      today: [
-        {
-          episodes: {
-            sub: number,
-            dub: number,
-          },
-          id: string,
-          name: string,
-          poster: string,
-          rank: number
-        },
-        {...},
-      ],
-      month: [...],
-      week: [...]
-    },
-    topAiringAnimes: [
-      {
-        id: string,
-        name: string,
-        jname: string,
-        poster: string,
-      },
-      {...},
-    ],
-    topUpcomingAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-    trendingAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        rank: number,
-      },
-      {...},
-    ],
-    mostPopularAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        type: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-    mostFavoriteAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        type: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-    latestCompletedAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        type: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-  }
-}
-
-```
-
-[🔼 Back to Top](#table-of-contents)
-
-</details>
-
-<details>
-
-<summary>
-
-### `GET` Anime A-Z List
-
-</summary>
-
-#### Endpoint
-
-```sh
-/api/v2/hianime/azlist/{sortOption}?page={page}
-```
-
-#### Path Parameters
-
-|  Parameter   |  Type  |                                             Description                                             | Required? | Default |
-| :----------: | :----: | :-------------------------------------------------------------------------------------------------: | :-------: | :-----: |
-| `sortOption` | string | The az-list sort option. Possible values include: "all", "other", "0-9" and all english alphabets . |    Yes    |   --    |
-
-#### Query Parameters
-
-| Parameter |  Type  |          Description           | Required? | Default |
-| :-------: | :----: | :----------------------------: | :-------: | :-----: |
-|  `page`   | number | The page number of the result. |    No     |   `1`   |
-
-#### Request Sample
-
-```javascript
-const resp = await fetch("/api/v2/hianime/azlist/0-9?page=1");
-const data = await resp.json();
-console.log(data);
-```
-
-#### Response Schema
-
-```javascript
-{
-  success: true,
-  data: {
-    sortOption: "0-9",
-    animes: [
-      {
-        id: string,
-        name: string,
-        jname: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
-        episodes: {
-          sub: number ,
-          dub: number
-        }
-      },
-      {...}
-    ],
-    totalPages: 1,
-    currentPage: 1,
-    hasNextPage: false
-  }
-}
-```
-
-[🔼 Back to Top](#table-of-contents)
-
-</details>
-
-<details>
-
-<summary>
-
-### `GET` Anime Qtip Info
-
-</summary>
-
-#### Endpoint
-
-```sh
-/api/v2/hianime/qtip/{animeId}
-```
-
-#### Query Parameters
-
-| Parameter |  Type  |             Description              | Required? | Default |
-| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
-| `animeId` | string | The unique anime id (in kebab case). |    Yes    |   --    |
-
-#### Request Sample
-
-```javascript
-const resp = await fetch("/api/v2/hianime/qtip/one-piece-100");
-const data = await resp.json();
-console.log(data);
-```
-
-#### Response Schema
-
-```javascript
-{
-  success: true,
-  data: {
-    anime: {
-      id: "one-piece-100",
-      name: "One Piece",
-      malscore: string,
-      quality: string,
+  genres: ["Action", "Cars", "Adventure", ...],
+  latestEpisodeAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      type: string,
       episodes: {
         sub: number,
-        dub: number
-      },
-      type: string,
-      description: string,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  spotlightAnimes: [
+    {
+      id: string,
+      name: string,
       jname: string,
-      synonyms: string,
-      aired: string,
-      status: string,
-      genres: ["Action", "Adventure", "Comedy", "Drama", "Fantasy", "Shounen", "Drama", "Fantasy", "Shounen", "Fantasy", "Shounen", "Shounen", "Super Power"]
-    }
-  }
+      poster: string,
+      description: string,
+      rank: number,
+      otherInfo: string[],
+      episodes: {
+        sub: number,
+        dub: number,
+      },
+    },
+    {...},
+  ],
+  top10Animes: {
+    today: [
+      {
+        episodes: {
+          sub: number,
+          dub: number,
+        },
+        id: string,
+        name: string,
+        poster: string,
+        rank: number
+      },
+      {...},
+    ],
+    month: [...],
+    week: [...]
+  },
+  topAiringAnimes: [
+    {
+      id: string,
+      name: string,
+      jname: string,
+      poster: string,
+    },
+    {...},
+  ],
+  topUpcomingAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  trendingAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      rank: number,
+    },
+    {...},
+  ],
+  mostPopularAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      type: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  mostFavoriteAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      type: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  latestCompletedAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      type: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
 }
+
 ```
 
 [🔼 Back to Top](#table-of-contents)
@@ -476,19 +314,21 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/anime/{animeId}
+https://api-aniwatch.onrender.com/anime/info?id={anime-id}
 ```
 
 #### Query Parameters
 
 | Parameter |  Type  |             Description              | Required? | Default |
 | :-------: | :----: | :----------------------------------: | :-------: | :-----: |
-| `animeId` | string | The unique anime id (in kebab case). |    Yes    |   --    |
+|   `id`    | string | The unique anime id (in kebab case). |    Yes    |   --    |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
-const resp = await fetch("/api/v2/hianime/anime/attack-on-titan-112");
+const resp = await fetch(
+  "https://api-aniwatch.onrender.com/anime/info?id=attack-on-titan-112"
+);
 const data = await resp.json();
 console.log(data);
 ```
@@ -497,114 +337,111 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    anime: [
-      info: {
-        id: string,
-        name: string,
-        poster: string,
-        description: string,
-        stats: {
-          rating: string,
-          quality: string,
-          episodes: {
-            sub: number,
-            dub: number
-          },
-          type: string,
-          duration: string
+  anime: [
+    info: {
+      id: string,
+      name: string,
+      poster: string,
+      description: string,
+      stats: {
+        rating: string,
+        quality: string,
+        episodes: {
+          sub: number,
+          dub: number
         },
-        promotionalVideos: [
-          {
-            title: string | undefined,
-            source: string | undefined,
-            thumbnail: string | undefined
-          },
-          {...},
-        ],
-        characterVoiceActor: [
-          {
-            character: {
-              id: string,
-              poster: string,
-              name: string,
-              cast: string
-            },
-            voiceActor: {
-              id: string,
-              poster: string,
-              name: string,
-              cast: string
-            }
-          },
-          {...},
-        ]
-      }
-      moreInfo: {
-        aired: string,
-        genres: ["Action", "Mystery", ...],
-        status: string,
-        studios: string,
+        type: string,
         duration: string
-        ...
-      }
-    ],
-    mostPopularAnimes: [
-      {
-        episodes: {
-          sub: number,
-          dub: number,
+      },
+      promotionalVideos: [
+        {
+          title: string | undefined,
+          source: string | undefined,
+          thumbnail: string | undefined
         },
-        id: string,
-        jname: string,
-        name: string,
-        poster: string,
-        type: string
+        {...},
+      ],
+      characterVoiceActor: [
+        {
+          character: {
+            id: string,
+            poster: string,
+            name: string,
+            cast: string
+          },
+          voiceActor: {
+            id: string,
+            poster: string,
+            name: string,
+            cast: string
+          }
+        },
+        {...},
+      ]
+    }
+    moreInfo: {
+      aired: string,
+      genres: ["Action", "Mystery", ...],
+      status: string,
+      studios: string,
+      duration: string
+      ...
+    }
+  ],
+  mostPopularAnimes: [
+    {
+      episodes: {
+        sub: number,
+        dub: number,
       },
-      {...},
-    ],
-    recommendedAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-    relatedAnimes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-    seasons: [
-      {
-        id: string,
-        name: string,
-        title: string,
-        poster: string,
-        isCurrent: boolean
-      },
-      {...}
-    ]
-  }
+      id: string,
+      jname: string,
+      name: string,
+      poster: string,
+      type: string
+    },
+    {...},
+  ],
+  recommendedAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  relatedAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  seasons: [
+    {
+      id: string,
+      name: string,
+      title: string,
+      poster: string,
+      isCurrent: boolean
+    },
+    {...}
+  ]
 }
 ```
 
@@ -624,10 +461,10 @@ console.log(data);
 
 ```sh
 # basic example
-/api/v2/hianime/search?q={query}&page={page}
+https://api-aniwatch.onrender.com/anime/search?q={query}&page={page}
 
 # advanced example
-/api/v2/hianime/search?q={query}&page={page}&genres={genres}&type={type}&sort={sort}&season={season}&language={sub_or_dub}&status={status}&rated={rating}&start_date={yyyy-mm-dd}&end_date={yyyy-mm-dd}&score={score}
+https://api-aniwatch.onrender.com/anime/search?q={query}&genres={genres}&type={type}&sort={sort}&season={season}&language={sub_or_dub}&status={status}&rated={rating}&start_date={yyyy-mm-dd}&end_date={yyyy-mm-dd}&score={score}
 ```
 
 #### Query Parameters
@@ -651,17 +488,19 @@ console.log(data);
 > For both `start_date` and `end_date`, year must be mentioned. If you wanna omit date or month specify `0` instead.
 > Eg: omitting date -> 2014-10-0, omitting month -> 2014-0-12, omitting both -> 2014-0-0
 
-#### Request Sample
+#### Request sample
 
 ```javascript
 // basic example
-const resp = await fetch("/api/v2/hianime/search?q=titan&page=1");
+const resp = await fetch(
+  "https://api-aniwatch.onrender.com/anime/search?q=titan&page=1"
+);
 const data = await resp.json();
 console.log(data);
 
 // advanced example
 const resp = await fetch(
-  "/api/v2/hianime/search?q=girls&genres=action,adventure&type=movie&sort=score&season=spring&language=dub&status=finished-airing&rated=pg-13&start_date=2014-0-0&score=good"
+  "https://api-aniwatch.onrender.com/anime/search?q=girls&genres=action,adventure&type=movie&sort=score&season=spring&language=dub&status=finished-airing&rated=pg-13&start_date=2014-0-0&score=good"
 );
 const data = await resp.json();
 console.log(data);
@@ -671,45 +510,42 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    animes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
+  animes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  mostPopularAnimes: [
+    {
+      episodes: {
+        sub: number,
+        dub: number,
       },
-      {...},
-    ],
-    mostPopularAnimes: [
-      {
-        episodes: {
-          sub: number,
-          dub: number,
-        },
-        id: string,
-        jname: string,
-        name: string,
-        poster: string,
-        type: string
-      },
-      {...},
-    ],
-    currentPage: 1,
-    totalPages: 1,
-    hasNextPage: false,
-    searchQuery: string,
-    searchFilters: {
-      [filter_name]: [filter_value]
-      ...
-    }
+      id: string,
+      jname: string,
+      name: string,
+      poster: string,
+      type: string
+    },
+    {...},
+  ],
+  currentPage: 1,
+  totalPages: 1,
+  hasNextPage: false,
+  searchQuery: string,
+  searchFilters: {
+    [filter_name]: [filter_value]
+    ...
   }
 }
 ```
@@ -729,7 +565,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/search/suggestion?q={query}
+https://api-aniwatch.onrender.com/anime/search/suggest?q={query}
 ```
 
 #### Query Parameters
@@ -738,10 +574,12 @@ console.log(data);
 | :-------: | :----: | :--------------------------: | :-------: | :-----: |
 |    `q`    | string | The search suggestion query. |    Yes    |   --    |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
-const resp = await fetch("/api/v2/hianime/search/suggestion?q=monster");
+const resp = await fetch(
+  "https://api-aniwatch.onrender.com/anime/search/suggest?q=monster"
+);
 const data = await resp.json();
 console.log(data);
 ```
@@ -750,19 +588,16 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    suggestions: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        jname: string,
-        moreInfo: ["Jan 21, 2022", "Movie", "17m"]
-      },
-      {...},
-    ]
-  }
+  suggestions: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      jname: string,
+      moreInfo: ["Jan 21, 2022", "Movie", "17m"]
+    },
+    {...},
+  ],
 }
 ```
 
@@ -781,7 +616,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/producer/{name}?page={page}
+https://api-aniwatch.onrender.com/anime/producer/{name}?page={page}
 ```
 
 #### Path Parameters
@@ -796,10 +631,12 @@ console.log(data);
 | :-------: | :----: | :----------------------------: | :-------: | :-----: |
 |  `page`   | number | The page number of the result. |    No     |   `1`   |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
-const resp = await fetch("/api/v2/hianime/producer/toei-animation?page=2");
+const resp = await fetch(
+  "https://api-aniwatch.onrender.com/anime/producer/toei-animation?page=2"
+);
 const data = await resp.json();
 console.log(data);
 ```
@@ -808,59 +645,56 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    producerName: "Toei Animation Anime",
-    animes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
-      },
-      {...},
-    ],
-    top10Animes: {
-      today: [
-        {
-          episodes: {
-            sub: number,
-            dub: number,
-          },
-          id: string,
-          name: string,
-          poster: string,
-          rank: number
-        },
-        {...},
-      ],
-      month: [...],
-      week: [...]
+  producerName: "Toei Animation Anime",
+  animes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
     },
-    topAiringAnimes: [
+    {...},
+  ],
+  top10Animes: {
+    today: [
       {
         episodes: {
           sub: number,
           dub: number,
         },
         id: string,
-        jname: string,
         name: string,
         poster: string,
-        type: string
+        rank: number
       },
       {...},
     ],
-    currentPage: 2,
-    totalPages: 11,
-    hasNextPage: true
-  }
+    month: [...],
+    week: [...]
+  },
+  topAiringAnimes: [
+    {
+      episodes: {
+        sub: number,
+        dub: number,
+      },
+      id: string,
+      jname: string,
+      name: string,
+      poster: string,
+      type: string
+    },
+    {...},
+  ],
+  currentPage: 2,
+  totalPages: 11,
+  hasNextPage: true,
 }
 ```
 
@@ -879,7 +713,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/genre/{name}?page={page}
+https://api-aniwatch.onrender.com/anime/genre/{name}?page={page}
 ```
 
 #### Path Parameters
@@ -894,10 +728,12 @@ console.log(data);
 | :-------: | :----: | :----------------------------: | :-------: | :-----: |
 |  `page`   | number | The page number of the result. |    No     |   `1`   |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
-const resp = await fetch("/api/v2/hianime/genre/shounen?page=2");
+const resp = await fetch(
+  "https://api-aniwatch.onrender.com/anime/genre/shounen?page=2"
+);
 const data = await resp.json();
 console.log(data);
 ```
@@ -906,43 +742,40 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    genreName: "Shounen Anime",
-    animes: [
-      {
-        id: string,
-        name: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
-        episodes: {
-          sub: number,
-          dub: number,
-        }
+  genreName: "Shounen Anime",
+  animes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  genres: ["Action", "Cars", "Adventure", ...],
+  topAiringAnimes: [
+    {
+      episodes: {
+        sub: number,
+        dub: number,
       },
-      {...},
-    ],
-    genres: ["Action", "Cars", "Adventure", ...],
-    topAiringAnimes: [
-      {
-        episodes: {
-          sub: number,
-          dub: number,
-        },
-        id: string,
-        jname: string,
-        name: string,
-        poster: string,
-        type: string
-      },
-      {...},
-    ],
-    currentPage: 2,
-    totalPages: 38,
-    hasNextPage: true
-  }
+      id: string,
+      jname: string,
+      name: string,
+      poster: string,
+      type: string
+    },
+    {...},
+  ],
+  currentPage: 2,
+  totalPages: 38,
+  hasNextPage: true
 }
 ```
 
@@ -954,14 +787,14 @@ console.log(data);
 
 <summary>
 
-### `GET` Category Animes
+### `GET` Category Anime
 
 </summary>
 
 #### Endpoint
 
 ```sh
-/api/v2/hianime/category/{name}?page={page}
+https://api-aniwatch.onrender.com/anime/{category}?page={page}
 ```
 
 #### Path Parameters
@@ -976,12 +809,12 @@ console.log(data);
 | :-------: | :----: | :----------------------------: | :-------: | :-----: |
 |  `page`   | number | The page number of the result. |    No     |   `1`   |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
 // categories -> "most-favorite", "most-popular", "subbed-anime", "dubbed-anime", "recently-updated", "recently-added", "top-upcoming", "top-airing", "movie", "special", "ova", "ona", "tv", "completed"
 
-const resp = await fetch("/api/v2/hianime/category/tv?page=2");
+const resp = await fetch("https://api-aniwatch.onrender.com/anime/tv?page=2");
 const data = await resp.json();
 console.log(data);
 ```
@@ -990,46 +823,43 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    category: "TV Series Anime",
-    animes: [
+  category: "TV Series Anime",
+  animes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  genres: ["Action", "Cars", "Adventure", ...],
+  top10Animes: {
+    today: [
       {
-        id: string,
-        name: string,
-        poster: string,
-        duration: string,
-        type: string,
-        rating: string,
         episodes: {
           sub: number,
           dub: number,
-        }
+        },
+        id: string,
+        name: string,
+        poster: string,
+        rank: number
       },
       {...},
     ],
-    genres: ["Action", "Cars", "Adventure", ...],
-    top10Animes: {
-      today: [
-        {
-          episodes: {
-            sub: number,
-            dub: number,
-          },
-          id: string,
-          name: string,
-          poster: string,
-          rank: number
-        },
-        {...},
-      ],
-      month: [...],
-      week: [...]
-    },
-    currentPage: 2,
-    totalPages: 100,
-    hasNextPage: true
-  }
+    month: [...],
+    week: [...]
+  },
+  currentPage: 2,
+  totalPages: 100,
+  hasNextPage: true
 }
 ```
 
@@ -1048,19 +878,21 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/schedule?date={date}
+https://api-aniwatch.onrender.com/anime/schedule?date={date}
 ```
 
 #### Query Parameters
 
-| Parameter |  Type  |                               Description                               | Required? | Default |
-| :-------: | :----: | :---------------------------------------------------------------------: | :-------: | :-----: |
-|  `date`   | string | The date of the desired schedule in the following format: (yyyy-mm-dd). |    Yes    |   --    |
+|      Parameter      |  Type  |                             Description                              | Required? | Default |
+| :-----------------: | :----: | :------------------------------------------------------------------: | :-------: | :-----: |
+| `date (yyyy-mm-dd)` | string | The date of the desired schedule. (months & days must have 2 digits) |    Yes    |   --    |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
-const resp = await fetch("/api/v2/hianime/schedule?date=2024-06-09");
+const resp = await fetch(
+  "https://api-aniwatch.onrender.com/anime/schedule?date=2023-01-14"
+);
 const data = await resp.json();
 console.log(data);
 ```
@@ -1069,20 +901,17 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    scheduledAnimes: [
-      {
-        id: string,
-        time: string, // 24 hours format
-        name: string,
-        jname: string,
-        airingTimestamp: number,
-        secondsUntilAiring: number
-      },
-      {...}
-    ]
-  }
+  scheduledAnimes: [
+    {
+      id: string,
+      time: string, // 24 hours format
+      name: string,
+      jname: string,
+      airingTimestamp: number,
+      secondsUntilAiring: number
+    },
+    {...}
+  ]
 }
 ```
 
@@ -1101,7 +930,7 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/anime/{animeId}/episodes
+https://api-aniwatch.onrender.com/anime/episodes/{animeId}
 ```
 
 #### Path Parameters
@@ -1110,10 +939,12 @@ console.log(data);
 | :-------: | :----: | :------------------: | :-------: | :-----: |
 | `animeId` | string | The unique anime id. |    Yes    |   --    |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
-const resp = await fetch("/api/v2/hianime/anime/steinsgate-3/episodes");
+const resp = await fetch(
+  "https://api-aniwatch.onrender.com/anime/episodes/steinsgate-3"
+);
 const data = await resp.json();
 console.log(data);
 ```
@@ -1122,19 +953,16 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    totalEpisodes: 24,
-    episodes: [
-      {
-        number: 1,
-        title: "Turning Point",
-        episodeId: "steinsgate-3?ep=213"
-        isFiller: false,
-      },
-      {...}
-    ]
-  }
+  totalEpisodes: 24,
+  episodes: [
+    {
+      number: 1,
+      title: "Turning Point",
+      episodeId: "steinsgate-3?ep=213"
+      isFiller: false,
+    },
+    {...}
+  ]
 }
 ```
 
@@ -1153,20 +981,20 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/episode/servers?animeEpisodeId={id}
+https://api-aniwatch.onrender.com/anime/servers?episodeId={id}
 ```
 
 #### Query Parameters
 
-|    Parameter     |  Type  |         Description          | Required? | Default |
-| :--------------: | :----: | :--------------------------: | :-------: | :-----: |
-| `animeEpisodeId` | string | The unique anime episode id. |    Yes    |   --    |
+|  Parameter  |  Type  |      Description       | Required? | Default |
+| :---------: | :----: | :--------------------: | :-------: | :-----: |
+| `episodeId` | string | The unique episode id. |    Yes    |   --    |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
 const resp = await fetch(
-  "/api/v2/hianime/episode/servers?animeEpisodeId=steinsgate-0-92?ep=2055"
+  "https://api-aniwatch.onrender.com/anime/servers?episodeId=steinsgate-0-92?ep=2055"
 );
 const data = await resp.json();
 console.log(data);
@@ -1176,32 +1004,29 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    episodeId: "steinsgate-0-92?ep=2055",
-    episodeNo: 5,
-    sub: [
-      {
-        serverId: 4,
-        serverName: "vidstreaming",
-      },
-      {...}
-    ],
-    dub: [
-      {
-        serverId: 1,
-        serverName: "megacloud",
-      },
-      {...}
-    ],
-    raw: [
-      {
-        serverId: 1,
-        serverName: "megacloud",
-      },
-      {...}
-    ]
-  }
+  episodeId: "steinsgate-0-92?ep=2055",
+  episodeNo: 5,
+  sub: [
+    {
+      serverId: 4,
+      serverName: "vidstreaming",
+    },
+    {...}
+  ],
+  dub: [
+    {
+      serverId: 1,
+      serverName: "megacloud",
+    },
+    {...}
+  ],
+  raw: [
+    {
+      serverId: 1,
+      serverName: "megacloud",
+    },
+    {...}
+  ],
 }
 ```
 
@@ -1220,22 +1045,22 @@ console.log(data);
 #### Endpoint
 
 ```sh
-/api/v2/hianime/episode/sources?animeEpisodeId={id}?server={server}&category={dub || sub || raw}
+https://api-aniwatch.onrender.com/anime/episode-srcs?id={episodeId}&server={server}&category={category}
 ```
 
 #### Query Parameters
 
-|    Parameter     |  Type  |                     Description                      | Required? | Default  |
-| :--------------: | :----: | :--------------------------------------------------: | :-------: | :------: |
-| `animeEpisodeId` | string |             The unique anime episode id.             |    Yes    |    --    |
-|     `server`     | string |               The name of the server.                |    No     | `"hd-1"` |
-|    `category`    | string | The category of the episode ('sub', 'dub' or 'raw'). |    No     | `"sub"`  |
+| Parameter  |  Type  |                     Description                      | Required? |     Default      |
+| :--------: | :----: | :--------------------------------------------------: | :-------: | :--------------: |
+|    `id`    | string |                The id of the episode.                |    Yes    |        --        |
+|  `server`  | string |               The name of the server.                |    No     |     `"hd-1"`     |
+| `category` | string | The category of the episode ('sub', 'dub' or 'raw'). |    No     |     `"sub"`      |
 
-#### Request Sample
+#### Request sample
 
 ```javascript
 const resp = await fetch(
-  "/api/v2/hianime/episode/sources?animeEpisodeId=steinsgate-3?ep=230&server=hd-1&category=dub"
+  "https://api-aniwatch.onrender.com/anime/episode-srcs?id=steinsgate-3?ep=230&server=hd-1&category=dub"
 );
 const data = await resp.json();
 console.log(data);
@@ -1245,31 +1070,28 @@ console.log(data);
 
 ```javascript
 {
-  success: true,
-  data: {
-    headers: {
-      Referer: string,
-      "User-Agent": string,
-      ...
+  headers: {
+    Referer: string,
+    "User-Agent": string,
+    ...
+  },
+  sources: [
+    {
+      url: string, // .m3u8 hls streaming file
+      isM3U8: boolean,
+      quality?: string,
     },
-    sources: [
-      {
-        url: string, // .m3u8 hls streaming file
-        isM3U8: boolean,
-        quality?: string,
-      },
-      {...}
-    ],
-    subtitles: [
-      {
-        lang: "English",
-        url: string, // .vtt subtitle file
-      },
-      {...}
-    ],
-    anilistID: number | null,
-    malID: number | null
-  }
+    {...}
+  ],
+  subtitles: [
+    {
+      lang: "English",
+      url: string, // .vtt subtitle file
+    },
+    {...}
+  ],
+  anilistID: number | null,
+  malID: number | null,
 }
 ```
 
@@ -1301,8 +1123,6 @@ Don't forget to leave a star 🌟. You can also follow me on X (Twitter) [@rites
 This project is licensed under the [MIT License](https://opensource.org/license/mit/) - see the [LICENSE](https://github.com/ghoshRitesh12/aniwatch-api/blob/main/LICENSE) file for more details.
 
 <br/>
-
-## <span id="star-history">🌟 Star History</span>
 
 <img
   id="star-history" 
