@@ -66,6 +66,7 @@
   - [Vercel](#vercel)
   - [Render](#render)
 - [Documentation](#documentation)
+  - [GET Anime Landing Page](#get-anime-landing-page)
   - [GET Anime Home Page](#get-anime-home-page)
   - [GET Anime About Info](#get-anime-about-info)
   - [GET Search Results](#get-search-results)
@@ -149,6 +150,41 @@ Deploy your own instance of Aniwatch API on Render.
 ## <span id="documentation">📚 Documentation</span>
 
 The endpoints exposed by the api are listed below with examples that uses the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), but you can use any http library.
+
+<details>
+
+<summary>
+
+### `GET` Anime Landing Page
+
+</summary>
+
+#### Endpoint
+
+```bash
+https://api-aniwatch.onrender.com/anime/landing
+```
+
+#### Request sample
+
+```javascript
+const resp = await fetch("https://api-aniwatch.onrender.com/anime/landing");
+const data = await resp.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```javascript
+{
+  coverImage: string,
+  topSearches: string[],
+}
+```
+
+[🔼 Back to Top](#table-of-contents)
+
+</details>
 
 <details>
 

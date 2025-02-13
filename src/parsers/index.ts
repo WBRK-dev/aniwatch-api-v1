@@ -1,3 +1,4 @@
+import scrapeLandingPage from "./landingPage.js";
 import scrapeHomePage from "./homePage.js";
 import scrapeGenreAnime from "./animeGenre.js";
 import scrapeAnimeSearch from "./animeSearch.js";
@@ -11,6 +12,7 @@ import scrapeAnimeEpisodeSources from "./animeEpisodeSrcs.js";
 import scrapeAnimeSearchSuggestion from "./animeSearchSuggestion.js";
 
 export {
+  scrapeLandingPage,
   scrapeHomePage,
   scrapeGenreAnime,
   scrapeAnimeSearch,

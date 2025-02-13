@@ -11,12 +11,16 @@ import {
   getEstimatedSchedule,
   getAnimeEpisodeSources,
   getAnimeSearchSuggestion,
+  getLandingPageInfo,
 } from "../controllers/index.js";
 
 const router: IRouter = Router();
 
 // /anime
 router.get("/", (_, res) => res.redirect("/"));
+
+// /anime/landing
+router.get("/landing", getLandingPageInfo);
 
 // /anime/home
 router.get("/home", getHomePageInfo);

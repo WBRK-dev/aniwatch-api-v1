@@ -1,4 +1,5 @@
 import getGenreAnime from "./animeGenre.controller.js";
+import getLandingPageInfo from "./landingPage.controller.js";
 import getHomePageInfo from "./homePage.controller.js";
 import getAnimeSearch from "./animeSearch.controller.js";
 import getAnimeEpisodes from "./animeEpisodes.controller.js";
@@ -12,8 +13,9 @@ import getAnimeSearchSuggestion from "./animeSearchSuggestion.controller.js";
 
 export {
   getGenreAnime,
-  getAnimeSearch,
+  getLandingPageInfo,
   getHomePageInfo,
+  getAnimeSearch,
   getAnimeEpisodes,
   getAnimeCategory,
   getEpisodeServers,
