@@ -1,3 +1,12 @@
+## [1.42.1](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.0...1.42.1) (2025-07-27)
+
+
+### Bug Fixes
+
+* fixed the dub versions ([2ec8276](https://github.com/ghoshRitesh12/aniwatch-api/commit/2ec8276e380ee0558e99bb7380e8a4105ad411e3))
+
+
+
 # [1.42.0](https://github.com/ghoshRitesh12/aniwatch-api/compare/v1.40.3...1.42.0) (2025-07-27)
 
 
