@@ -80,16 +80,11 @@ async function scrapeAnimeEpisodeSources(
       console.log("THE SERVER: ", server);
 
       switch (server) {
+        case Servers.VidStreaming:
         case Servers.VidCloud: {
-          serverId = retrieveServerId($, 1, category);
-          if (!serverId) throw new Error("RapidCloud not found");
-          break;
-        }
-        case Servers.VidStreaming: {
-          serverId = retrieveServerId($, 4, category);
-          console.log("SERVER_ID: ", serverId);
-          if (!serverId) throw new Error("VidStreaming not found");
-          break;
+          return {
+            ...(await new MegaCloud().extract2(episodeId)),
+          };
         }
         case Servers.StreamSB: {
           serverId = retrieveServerId($, 5, category);
