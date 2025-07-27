@@ -1,5 +1,6 @@
 export interface Video {
-  url: string;
+  url?: string;
+  file?: string;
   quality?: string;
   isM3U8?: boolean;
   size?: number;
