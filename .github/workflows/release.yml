@@ -3,7 +3,7 @@ name: "Push to deploy"
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   changelog:
