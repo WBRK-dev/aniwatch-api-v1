@@ -159,7 +159,7 @@ class MegaCloud {
     }
   }
 
-  async extract2(episodeId: string): Promise<ExtractedData> {
+  async extract2(episodeId: string, category: "sub" | "dub" | "raw"): Promise<ExtractedData> {
     const extractedData: ExtractedData = {
         tracks: [],
         intro: {
@@ -175,7 +175,7 @@ class MegaCloud {
 
     const epId = episodeId.split("?ep=")[1];
 
-    const iframe = await fetch(`https://megaplay.buzz/stream/s-2/${epId}/sub`, {
+    const iframe = await fetch(`https://megaplay.buzz/stream/s-2/${epId}/${category}`, {
         headers: {
             "Host": "megaplay.buzz",
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
