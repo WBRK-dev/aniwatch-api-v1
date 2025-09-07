@@ -236,7 +236,6 @@ class MegaCloud {
   }
 
     async extract5(embedIframeURL: URL): Promise<ExtractedData> {
-        // console.log("new extraction used")
         try {
             // this key is extracted the same way as extract3's key
             const response = await axios.get(
