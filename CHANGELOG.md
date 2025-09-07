@@ -1,3 +1,12 @@
+## [1.42.3](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.2...1.42.3) (2025-09-07)
+
+
+### Bug Fixes
+
+* fixed deployment ([7cd69f1](https://github.com/ghoshRitesh12/aniwatch-api/commit/7cd69f14aa1098237321fb695a476bb579dc0cdf))
+
+
+
 ## [1.42.2](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.1...1.42.2) (2025-09-07)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * fixed building issues ([67a3794](https://github.com/ghoshRitesh12/aniwatch-api/commit/67a37949cd0938be2153075597e2e36998c2c873))
-
-
-
-## [1.40.2](https://github.com/ghoshRitesh12/aniwatch-api/compare/v1.40.1...v1.40.2) (2025-02-01)
-
-
-### Bug Fixes
-
-* fixed type errors ([937e50a](https://github.com/ghoshRitesh12/aniwatch-api/commit/937e50ac3e159c64051acc404c0d039b4dd5aef9))
 
 
 
