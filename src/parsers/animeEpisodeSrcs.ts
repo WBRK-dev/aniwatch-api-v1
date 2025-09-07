@@ -33,7 +33,7 @@ async function scrapeAnimeEpisodeSources(
       case Servers.VidStreaming:
       case Servers.VidCloud:
         return {
-          ...(await new MegaCloud().extract(serverUrl)),
+          ...(await new MegaCloud().extract5(serverUrl)),
         };
       case Servers.StreamSB:
         return {
