@@ -179,7 +179,7 @@ function isNull(test: any) {
 function getDataView() {
   return (dataView =
     dataView === null ||
-    isDetached(dataView.buffer) ||
+    isDetached(dataView.buffer as ArrayBuffer) ||
     dataView.buffer !== wasm.memory.buffer
       ? new DataView(wasm.memory.buffer)
       : dataView);
