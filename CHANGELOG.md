@@ -1,3 +1,12 @@
+## [1.42.4](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.3...1.42.4) (2025-09-07)
+
+
+### Bug Fixes
+
+* actually use the new decryption ([5072e21](https://github.com/ghoshRitesh12/aniwatch-api/commit/5072e21b0e49856afb7c02e1e4dec716fbe99d20))
+
+
+
 ## [1.42.3](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.2...1.42.3) (2025-09-07)
 
 
@@ -38,15 +47,6 @@
 ### Features
 
 * added landing page ([b897f97](https://github.com/ghoshRitesh12/aniwatch-api/commit/b897f976e251c299afc13987a471f2d1cde48ff0))
-
-
-
-## [1.40.3](https://github.com/ghoshRitesh12/aniwatch-api/compare/v1.40.2...v1.40.3) (2025-02-01)
-
-
-### Bug Fixes
-
-* fixed building issues ([67a3794](https://github.com/ghoshRitesh12/aniwatch-api/commit/67a37949cd0938be2153075597e2e36998c2c873))
 
 
 
