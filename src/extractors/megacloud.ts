@@ -287,6 +287,7 @@ class MegaCloud {
                     throw new Error("Decrypted data is not valid JSON");
                 }
             }
+            extractedData.sources = decryptedSources;
             extractedData.tracks = rawSourceData.tracks;
             extractedData.intro = rawSourceData.intro;
             extractedData.outro = rawSourceData.outro;
@@ -296,17 +297,6 @@ class MegaCloud {
             extractedData.outro = rawSourceData.outro
                 ? rawSourceData.outro
                 : extractedData.outro;
-
-            extractedData.tracks =
-                rawSourceData.tracks?.map((track: any) => ({
-                    url: track.file,
-                    lang: track.label ? track.label : track.kind,
-                })) || [];
-            extractedData.sources = decryptedSources.map((s: any) => ({
-                url: s.file,
-                isM3U8: s.type === "hls",
-                type: s.type,
-            }));
 
             return extractedData;
         } catch (err){
