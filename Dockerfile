@@ -18,6 +18,8 @@ FROM node:22-alpine as prod
 
 LABEL org.opencontainers.image.licenses=MIT
 
+RUN apk add --no-cache curl
+
 # create a non-privileged user
 RUN addgroup -S aniwatch && adduser -S zoro -G aniwatch
 
