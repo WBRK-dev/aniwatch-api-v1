@@ -1,3 +1,12 @@
+## [1.42.6](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.5...1.42.6) (2025-09-22)
+
+
+### Bug Fixes
+
+* add curl to image ([f858c75](https://github.com/ghoshRitesh12/aniwatch-api/commit/f858c75b16c77453421a3585262d13fc6e84cf0d))
+
+
+
 ## [1.42.5](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.4...1.42.5) (2025-09-15)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * fixed getting episode sources ([c11ed90](https://github.com/ghoshRitesh12/aniwatch-api/commit/c11ed90b94b5a1decdf832bdaaca4ca9647033cf))
-
-
-
-## [1.42.1](https://github.com/ghoshRitesh12/aniwatch-api/compare/1.42.0...1.42.1) (2025-07-27)
-
-
-### Bug Fixes
-
-* fixed the dub versions ([2ec8276](https://github.com/ghoshRitesh12/aniwatch-api/commit/2ec8276e380ee0558e99bb7380e8a4105ad411e3))
 
 
 
